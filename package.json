@@ -2,11 +2,11 @@
   "name": "ws-server",
   "version": "1.0.0",
   "description": "",
-  "main": "./bin/app.js",
+  "main": "bin/app.js",
   "scripts": {
-    "start": "npm run build && node ./bin/app.js",
+    "start": "npm run build && node bin/app.js",
     "build": "tsc",
-    "watch": "nodemon ./bin/app.js",
+    "watch": "nodemon bin/app.js",
     "watch-ts": "tsc --watch"
   },
   "keywords": [],

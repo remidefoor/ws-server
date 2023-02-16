@@ -1,19 +1,11 @@
-import WebSocket, { WebSocketServer } from 'ws';
+import 'dotenv/config';
+import  { WebSocketServer } from 'ws';
 
-const WSS_PORT = 8080;
+import { handleConnection } from './controllers';
 
-const wss = new WebSocketServer({ port: WSS_PORT });
+const WSS_PORT = process.env.PORT || 8080;
+
+export const wsServer = new WebSocketServer({ port: WSS_PORT });
 console.info('WebSocket server is running.');
 
-wss.on('connection', (ws: WebSocket) => {
-    console.info('Client has connected.');
-    ws.on('error', console.error);
-
-    ws.on('message', (data: any) => {
-        console.log(data.toString());
-    });
-
-    ws.on('close', () => {
-        console.info('Client has disconnected.');
-    })
-});
+wsServer.on('connection', handleConnection);

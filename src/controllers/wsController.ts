@@ -1,7 +1,9 @@
 import WebSocket from 'ws';
 
+import { logErr, logEvt } from '../services';
+
 function handleConnectionErr(err: any): void {
-    console.error(err);
+    logErr(err);
 }
 
 function handleConnectionMsg(msg: any): void {
@@ -9,11 +11,11 @@ function handleConnectionMsg(msg: any): void {
 }
 
 function handleConnectionClose(): void {
-    console.info('Client has disconnected.');
+    logEvt('Client has disconnected.');
 }
 
 export function handleConnection(ws: WebSocket): void {
-    console.info('Client has connected.');
+    logEvt('Client has connected.');
 
     ws.on('error', handleConnectionErr);
     ws.on('message', handleConnectionMsg);

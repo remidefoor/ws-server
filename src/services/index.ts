@@ -1,1 +1,2 @@
-export * from './msgService';
+export * from './logService'
+export * from './evtService';

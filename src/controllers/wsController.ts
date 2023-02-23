@@ -2,7 +2,7 @@ import 'dotenv/config';
 import WebSocket from 'ws';
 
 import { wsServer } from '../app';
-import { broadcastEvt, logErr, logEvt } from '../services';
+import { broadcastSoccerEvt, logErr, logEvt } from '../services';
 
 const EVT_FEED_INTERVAL = process.env.EVT_FEED_INTERVAL || 5000;
 
@@ -28,7 +28,6 @@ export function handleConnection(ws: WebSocket): void {
     ws.on('close', handleConnectionClose);
 }
 
-export function simulateEvtFeed(): void {
-    const evt = 'Hello, World!';
-    setInterval(broadcastEvt.bind(null, wsServer.clients, evt), EVT_FEED_INTERVAL);
+export function simulateEvtStream(): void {
+    setInterval(broadcastSoccerEvt.bind(null, wsServer.clients), EVT_FEED_INTERVAL);
 }
